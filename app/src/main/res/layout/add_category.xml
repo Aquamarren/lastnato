@@ -10,21 +10,53 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.marrenmatias.trynavdrawer.AddCategory">
 
+    <EditText
+        android:hint="Category Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextCategoryName"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <DatePicker
+        android:layout_marginTop="114dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerDueDate"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_below="@+id/datePickerFrom"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add"
         android:id="@+id/btnInsertCategory"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="116dp" />
 
-    <EditText
+    <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextCategoryName"
-        android:layout_alignParentEnd="true"
-        android:layout_above="@+id/btnInsertCategory"
-        android:layout_alignParentStart="true" />
+        android:text="SET REMINDER FOR DUE DATE"
+        android:id="@+id/checkBoxDueDate"
+        android:layout_below="@+id/editTextCategoryName"
+        android:layout_alignParentStart="true"
+        android:checked="false" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:timePickerMode="spinner"
+        android:layout_below="@+id/datePickerTo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="250dp" />
 
 
 </RelativeLayout>

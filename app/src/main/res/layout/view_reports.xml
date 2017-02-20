@@ -4,10 +4,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.marrenmatias.trynavdrawer.ViewReports">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="reports pppaaggeennnnnaaaa" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GRAPH"
+        android:id="@+id/btnGraphShow"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewCategoryWithExpense"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORECAST"
+        android:id="@+id/btnForecastExp"
+        android:layout_alignBottom="@+id/listViewCategoryWithExpense"
+        android:layout_alignParentEnd="true" />
 </FrameLayout>
