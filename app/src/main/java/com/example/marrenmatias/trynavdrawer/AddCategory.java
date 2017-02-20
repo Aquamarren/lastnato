@@ -32,7 +32,7 @@ public class AddCategory extends Activity {
 
         getWindow().setLayout((int)(width*.6),(int)(height*.5));
 
-
+                    //hello
         editTextCategoryName = (EditText)findViewById(R.id.editTextCategoryName);
         btnInsertCategory = (Button)findViewById(R.id.btnInsertCategory);
         InsertCategory();
