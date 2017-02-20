@@ -42,7 +42,7 @@ public class AddCategory extends Activity {
         btnInsertCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mydb.AddCategory(editTextCategoryName.getText().toString());
+                //mydb.AddCategory(editTextCategoryName.getText().toString());
                 Log.i("insert", "Category Inserted");
 
                 Intent intent = new Intent(AddCategory.this,Main4Activity.class);
