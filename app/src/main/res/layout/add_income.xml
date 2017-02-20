@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.marrenmatias.trynavdrawer.AddIncome">
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/btnAddIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Income"
+        android:layout_below="@+id/editTextAddIncome"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        android:id="@+id/editTextAddIncome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="367dp"
+        app:srcCompat="@drawable/incomelogo"
+        android:id="@+id/moneyDesign"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:text="Update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/updatePopup"
+        android:textSize="24sp"
+        android:layout_alignBottom="@+id/moneyDesign"
+        android:layout_alignStart="@+id/incomeUpdate"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="20dp" />
+
+    <ImageButton
+        android:layout_width="92dp"
+        android:layout_height="84dp"
+        app:srcCompat="@drawable/plus"
+        android:id="@+id/incomeUpdate"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:background="@null"
+        android:layout_marginEnd="20dp"
+        android:layout_above="@+id/updatePopup"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/Income"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Income"
+        android:textSize="42sp"
+        android:textColor="#5f5f5f"
+        android:layout_above="@+id/moneyDesign"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="18dp" />
+
+    <TextView
+        android:id="@+id/IncomeVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="10,000.00"
+        android:textSize="42sp"
+        android:textColor="#5f5f5f"
+        android:layout_below="@+id/Income"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>

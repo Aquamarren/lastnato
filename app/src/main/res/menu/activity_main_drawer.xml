@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav1"
+            android:title="Income"/>
+        <item
+            android:id="@+id/nav2"
+            android:title="Budget"/>
+        <item
+            android:id="@+id/nav3"
+            android:title="Expenses" />
+        <item
+            android:id="@+id/nav4"
+            android:title="Reports" />
+        <item
+            android:id="@+id/nav5"
+            android:title="Savings" />
+        <item
+            android:id="@+id/nav6"
+            android:title="Goals" />
+        <item
+            android:id="@+id/nav7"
+            android:title="Community" />
+</group>
+
+</menu>

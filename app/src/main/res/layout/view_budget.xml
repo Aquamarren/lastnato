@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.marrenmatias.trynavdrawer.ViewBudget">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BUDGET"
+        android:id="@+id/textView10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/firstCategoryName"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        android:textStyle="bold" >
+    </TextView>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/firstCategoryAmount"
+        android:layout_alignBottom="@+id/firstCategoryName"
+        android:layout_toEndOf="@+id/firstCategoryName" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView4"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHECK"
+        android:id="@+id/btnCheckBudget"
+        android:layout_alignBottom="@+id/listView4"
+        android:layout_alignEnd="@+id/listView4" />
+
+</LinearLayout>
