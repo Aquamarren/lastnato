@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -24,6 +25,7 @@ public class ViewReports extends Fragment {
     SQLiteDatabase db;
     DatabaseHelper mydb;
     Cursor cursor;
+    Cursor data;
     private ListView mMessageListView;
     private ListAdapter mAdapter;
     private ListView listViewCategoryWithExpense;
@@ -57,9 +59,18 @@ public class ViewReports extends Fragment {
         });
 
 
+        //data = db.rawQuery("SELECT * FROM CATEGORY WHERE ACTIVE = 1",null);
+
+
         // Set list view adapter
 
-        cursor = db.rawQuery("SELECT *, ID AS _id FROM EXPENSE WHERE ACTIVE = 1 GROUP BY ExpenseDate ORDER BY ExpenseDate DESC",null);  // parameters snipped
+        cursor = db.rawQuery("SELECT *, " +
+                "EXPENSE.ID AS _id," +
+                "CATEGORY.ID AS _id," +
+                "(EXPENSE.ExpenseAmount/CATEGORY.BudgetCost) * 100 AS ProgressPercent " +
+                "FROM EXPENSE, CATEGORY " +
+                "WHERE ACTIVE = 1 " +
+                "GROUP BY EXPENSE.ExpenseDate ORDER BY EXPENSE.ExpenseDate DESC",null);  // parameters snipped
         mAdapter = new MessageAdapter(getActivity(), cursor);
         mMessageListView.setAdapter(mAdapter);
 
@@ -91,6 +102,8 @@ public class ViewReports extends Fragment {
             mColSubject = cursor.getColumnIndex("CategoryName");
             mColFrom = cursor.getColumnIndex("ExpenseAmount");
             mColWhen = cursor.getColumnIndex("ExpenseDate");
+            percentage = cursor.getColumnIndex("ProgressPercent");
+
             // }
         }
 
@@ -172,6 +185,8 @@ public class ViewReports extends Fragment {
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
             TextView tv;
+            ProgressBar pB;
+
             tv = (TextView) view.findViewById(R.id.ExpenseCategoryName1);
             tv.setText(cursor.getString(mColSubject));
 
@@ -180,6 +195,11 @@ public class ViewReports extends Fragment {
 
             tv = (TextView) view.findViewById(R.id.list_header_title);
             tv.setText(cursor.getString(mColWhen));
+
+            //pB.setProgress(cursor.getString(progress));
+            pB = (ProgressBar)view.findViewById(R.id.progressBar);
+           // pB.setProgress(cursor.getColumnIndex("ProgressPercent"));
+            pB.setProgress(Integer.valueOf(cursor.getString(percentage)));
 
         }
 
@@ -206,7 +226,7 @@ public class ViewReports extends Fragment {
         private int mColSubject;
         private int mColFrom;
         private int mColWhen;
-
+        private int percentage;
 
     }
 

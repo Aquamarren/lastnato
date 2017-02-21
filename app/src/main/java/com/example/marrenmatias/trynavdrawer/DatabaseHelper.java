@@ -38,16 +38,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " IncomeAmount FLOAT, IncomeDateTo DATE, IncomeDateFrom DATE, ACTIVE INTEGER)");
+
         db.execSQL("CREATE TABLE SAVINGS (ID INTEGER PRIMARY KEY AUTOINCREMENT, SavingsDate DATE," +
                 "SavingsAmount FLOAT)");
+
         db.execSQL("CREATE TABLE CATEGORY (ID INTEGER PRIMARY KEY AUTOINCREMENT, CategoryName TEXT, " +
-                "CategoryImg TEXT, Budget FLOAT, Checkbox INTEGER, DueDate DATE, DueTime TIME, ACTIVE INTEGER)");
-        db.execSQL("INSERT INTO CATEGORY (CategoryName,Budget,ACTIVE) VALUES('Electricity',0,1), ('Water',0,1), ('House Rent',0,1)");
+                "CategoryImg TEXT, Budget FLOAT, BudgetCost FLOAT, Checkbox INTEGER, DueDate DATE, DueTime TIME, ACTIVE INTEGER)");
+
+        db.execSQL("INSERT INTO CATEGORY (CategoryName,Budget,BudgetCost,ACTIVE) VALUES('Electricity',0,0,1), ('Water',0,0,1), ('House Rent',0,0,1)");
+
         db.execSQL("CREATE TABLE EXPENSE (ID INTEGER PRIMARY KEY AUTOINCREMENT, ExpenseAmount FLOAT, " +
                 "ExpenseDate DATE, CategoryName TEXT,ACTIVE INTEGER)");
+
         db.execSQL("CREATE TABLE GOALS (ID INTEGER PRIMARY KEY AUTOINCREMENT, GoalName TEXT, GoalCost FLOAT, GoalDate DATE, " +
                 "GoalRank INTEGER, GoalPoints INTEGER, GoalAccomplished INTEGER, MoneySaved FLOAT)");
+
         db.execSQL("INSERT INTO GOALS (GoalRank, GoalAccomplished, MoneySaved) VALUES (1,1,0),(2,1,0),(3,1,0),(4,1,0),(5,1,0)");
+
         db.execSQL("INSERT INTO EXPENSE(ExpenseAmount, ExpenseDate, CategoryName, ACTIVE) " +
                 "VALUES (20, '2017-01-30', 'Water', 1), (30, '2017-01-29', 'Electricity', 1)"); //Sample for forecastBudget
         //db.execSQL("UPDATE INCOME SET IncomeDateTo = 'February 18, 2017'");
@@ -114,8 +121,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void AddCategory(String Category, String Check, String DueDate, String DueTime){
         SQLiteDatabase db = this. getWritableDatabase();
-        String SQL = "INSERT INTO CATEGORY (CategoryName, ACTIVE, Checkbox, DueDate, DueTime) " +
-                "VALUES ('" + Category + "', 1,"+ Check +","+ DueDate +","+ DueTime +")";
+        String SQL = "INSERT INTO CATEGORY (CategoryName, ACTIVE, Checkbox, DueDate, DueTime, Budget, BudgetCost) " +
+                "VALUES ('" + Category + "', 1,"+ Check +","+ DueDate +","+ DueTime +",0,0)";
         db.execSQL(SQL);
     }
 
@@ -178,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void updateBudget(String Budget){
         SQLiteDatabase db = this.getWritableDatabase();
-        String SQL = "UPDATE CATEGORY SET Budget = '" + Budget + "' WHERE ACTIVE = 1";
+        String SQL = "UPDATE CATEGORY SET Budget = '" + Budget + "' AND BudgetCost = "+ Budget +" WHERE ACTIVE = 1";
         db.execSQL(SQL);
 
        /* PaSTE Th!S on UpdATE buDG3T PA6eeeeeeeeeeeee

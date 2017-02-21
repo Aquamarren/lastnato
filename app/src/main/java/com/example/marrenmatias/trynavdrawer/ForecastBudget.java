@@ -50,8 +50,6 @@ public class ForecastBudget extends AppCompatActivity {
                 "GROUP BY EXPENSE.CategoryName ORDER BY EXPENSE.ExpenseDate DESC", null);
 
 
-
-
         String[] columns = new String[]{"CategoryName", "ExpenseForecast"};
         int[] to = new int[]{R.id.textViewExpense, R.id.textViewExpenseAmountForecast};
 
