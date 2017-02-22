@@ -66,7 +66,9 @@ public class SetIncome extends AppCompatActivity {
                 }*/
             }catch (ParseException e){e.printStackTrace();}
 
-            Intent intent = new Intent(SetIncome.this,ViewExpense.class);
+            Intent intent = new Intent(SetIncome.this,MainActivity.class);
+            String frags = "next";
+            intent.putExtra("fragment",frags);
             startActivity(intent);
         }else{
             AddData();

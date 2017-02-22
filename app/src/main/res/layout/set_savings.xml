@@ -8,17 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg2"
     tools:context="com.example.marrenmatias.trynavdrawer.SetSavings">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Savings"
-        android:id="@+id/btnAddSaving"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="198dp"
-        android:onClick="onClick"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +18,8 @@
         android:text="Set Savings"
         android:id="@+id/textView4"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/btnAddSaving"
+        android:layout_marginTop="66dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -35,7 +27,16 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editTextSetSavings"
+        android:layout_marginTop="45dp"
         android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Savings"
+        android:id="@+id/btnAddSaving"
+        android:onClick="onClick"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

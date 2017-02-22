@@ -8,24 +8,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg2"
     tools:context="com.example.marrenmatias.trynavdrawer.SetIncome">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Set Budget"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
 
-    <EditText
+
+    <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editTextIncomeAmount"
-        android:layout_below="@+id/textView"
-        android:layout_alignEnd="@+id/datePickerFrom"
-        android:layout_alignStart="@+id/btnSubmit" />
+        android:id="@+id/datePickerTo"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_alignBottom="@+id/btnSubmit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -33,9 +29,9 @@
         android:text="OK"
         android:id="@+id/btnSubmit"
         android:onClick="onClick"
+        android:layout_marginBottom="21dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/textView"
-        android:layout_marginBottom="100dp" />
+        android:layout_centerHorizontal="true" />
 
     <DatePicker
         android:layout_width="wrap_content"
@@ -43,20 +39,27 @@
         android:id="@+id/datePickerFrom"
         android:datePickerMode="spinner"
         android:calendarViewShown="false"
+        android:clickable="true"
         android:layout_below="@+id/editTextIncomeAmount"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true" />
+        android:layout_alignStart="@+id/datePickerTo" />
 
-    <DatePicker
-        android:layout_marginTop="114dp"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePickerTo"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:layout_below="@+id/datePickerFrom"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Set Income"
+        android:id="@+id/textView"
+        android:layout_marginTop="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/editTextIncomeAmount"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

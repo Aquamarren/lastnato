@@ -1,10 +1,12 @@
 package com.example.marrenmatias.trynavdrawer;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -73,11 +75,24 @@ public class MainActivity extends AppCompatActivity
 
         });
 
-        setTitle("First Frag");
+        Intent i = getIntent();
+        String fragmentName = i.getStringExtra("fragment");
+        String forum = "next";
+        Log.d("Test1", "Test1" + fragmentName);
+
+        if (fragmentName != null && fragmentName.equals(forum)) {
+            setTitle("Expenses");
+            ViewExpense fragment = new ViewExpense();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment,"fragment3");
+            fragmentTransaction.commit();
+
+        }
+       /* setTitle("First Frag");
         AddIncome fragment = new AddIncome();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.frame, fragment,"fragment1");
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 
     @Override
