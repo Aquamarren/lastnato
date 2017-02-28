@@ -60,26 +60,6 @@ public class GoalForecast extends Activity{
         buttonGoToViewGoal = (Button)findViewById(R.id.buttonGoToViewGoal);
         buttonCalculate = (Button)findViewById(R.id.buttonCalculate);
 
-        /*Thread t = new Thread() {
-
-            @Override
-            public void run() {
-                try {
-                    while (!isInterrupted()) {
-                        Thread.sleep(5000);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                showGoalDetails();
-                            }
-                        });
-                    }
-                } catch (InterruptedException e) {
-                }
-            }
-        };
-
-        t.start();*/
         showGoalDetails();
     }
 

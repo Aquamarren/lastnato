@@ -8,16 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg2"
     tools:context="com.example.marrenmatias.trynavdrawer.AddCategory">
-
-    <EditText
-        android:hint="Category Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextCategoryName"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
 
     <DatePicker
         android:layout_marginTop="114dp"
@@ -31,32 +23,41 @@
         android:layout_alignParentEnd="true" />
 
 
-    <Button
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:id="@+id/btnInsertCategory"
-        android:layout_alignParentBottom="true"
+        android:hint="Category Name"
+        android:ems="10"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="116dp" />
+        android:id="@+id/editTextCategoryName"
+        android:layout_marginTop="55dp"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SET REMINDER FOR DUE DATE"
         android:id="@+id/checkBoxDueDate"
+        android:checked="false"
         android:layout_below="@+id/editTextCategoryName"
-        android:layout_alignParentStart="true"
-        android:checked="false" />
+        android:layout_alignEnd="@+id/editTextCategoryName"
+        android:layout_marginTop="15dp" />
 
     <TimePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
         android:timePickerMode="spinner"
-        android:layout_below="@+id/datePickerTo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp" />
+        android:layout_marginBottom="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/btnInsertCategory"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

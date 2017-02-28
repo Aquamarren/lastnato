@@ -21,14 +21,14 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GoalsPage extends Fragment {
+public class ViewGoalsPage extends Fragment {
     DatabaseHelper mydb;
     SQLiteDatabase db;
     private ListView listViewGoalsList;
     Cursor data;
     Cursor detail;
 
-    public GoalsPage() {
+    public ViewGoalsPage() {
         // Required empty public constructor
     }
 
@@ -74,7 +74,7 @@ public class GoalsPage extends Fragment {
                         intent.putExtra("goalRank", result);
                         startActivity(intent);
                     }else{
-                        Intent intent2 = new Intent(getActivity(), ViewGoalDetails.class);
+                        Intent intent2 = new Intent(getActivity(), GoalDetails.class);
                         intent2.putExtra("goalRank",result);
                         startActivity(intent2);
                     }

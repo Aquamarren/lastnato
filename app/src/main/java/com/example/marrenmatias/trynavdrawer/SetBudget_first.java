@@ -91,7 +91,9 @@ public class SetBudget_first extends AppCompatActivity {
                 mydb.insertBudgetOnCategory(String.valueOf(R.id.firstCategoryAmount), String.valueOf(R.id.firstCategoryName));
                 Toast.makeText(SetBudget_first.this, "Budget Inserted", Toast.LENGTH_SHORT).show();
                 Log.i("insert","Data insert expense");
-                Intent intent = new Intent(SetBudget_first.this,ViewExpense.class);
+                Intent intent = new Intent(SetBudget_first.this,MainActivity.class);
+                String frags = "ViewExpense";
+                intent.putExtra("to",frags);
                 startActivity(intent);
             }
         });

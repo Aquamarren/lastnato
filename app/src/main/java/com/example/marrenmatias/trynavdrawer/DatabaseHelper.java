@@ -28,6 +28,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static String KEY_TASK3 = "ExpenseAmount";
 
 
+    private static final String TABLE_NAMEZ = "contact";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_FNAME = "fname";
+    private static final String COLUMN_LNAME = "lname";
+    private static final String COLUMN_BDAY = "birthday";
+    private static final String COLUMN_EMAIL = "email";
+    private static final String COLUMN_UNAME = "uname";
+    private static final String COLUMN_PASS = "pass";
+    private static final String COLUMN_ACTIVE = "active";
+
+
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -36,6 +48,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("CREATE TABLE contact (id integer primary key not null, " +
+                "fname text not null, lname text not null, birthday text not null, email text not null unique, " +
+                "uname text not null unique, pass text not null, active integer not null)");
+
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " IncomeAmount FLOAT, IncomeDateTo DATE, IncomeDateFrom DATE, ACTIVE INTEGER)");
 
@@ -227,6 +244,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL);
     }
 
+    public void deactivate() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String SQL = "UPDATE contact SET ACTIVE = 0 WHERE ACTIVE = 1";
+        db.execSQL(SQL);
+    }
+
+    public void activate() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String SQL = "UPDATE contact SET ACTIVE = 1 WHERE ACTIVE = 0";
+        db.execSQL(SQL);
+    }
+
     public void useSavingsAddIncome(String Amount){
         SQLiteDatabase db = this.getWritableDatabase();
         String SQL = "UPDATE SAVINGS SET SavingsAmount = SavingsAmount - " + Amount;
@@ -240,6 +269,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String SQL1 = "UPDATE GOALS SET MoneySaved = MoneySaved + " + Amount + " WHERE GoalAccomplished = 1 AND GoalRank = " + GoalRank;
         db.execSQL(SQL1);
+    }
+
+    public void insertContact(Contact c)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String query = "select * from contact";
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+
+        values.put(COLUMN_ID, count);
+        values.put(COLUMN_FNAME, c.getFname());
+        values.put(COLUMN_LNAME, c.getLname());
+        values.put(COLUMN_BDAY, c.getLname());
+        values.put(COLUMN_EMAIL, c.getEmail());
+        values.put(COLUMN_UNAME, c.getUname());
+        values.put(COLUMN_PASS, c.getPass());
+        values.put(COLUMN_ACTIVE, "1");
+
+        db.insert(TABLE_NAMEZ, null, values);
+    }
+
+    public String searchPass(String uname)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "select uname, pass from "+TABLE_NAMEZ;
+        Cursor cursor = db.rawQuery(query, null);
+
+        String a, b;
+        b = "not found";
+
+        if(cursor.moveToFirst())
+        {
+            do
+            {
+                a = cursor.getString(0);
+                b = cursor.getString(1);
+
+                if(a.equals(uname))
+                {
+                    b = cursor.getString(1);
+                    break;                }
+            }
+            while(cursor.moveToNext());
+        }
+
+        return b;
     }
 
 }

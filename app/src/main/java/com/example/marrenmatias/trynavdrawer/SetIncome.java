@@ -27,7 +27,7 @@ public class SetIncome extends AppCompatActivity {
     private DatePicker datePickerTo;
     private DatePicker datePickerFrom;
     Cursor c;
-    SimpleDateFormat df = new SimpleDateFormat("MMMM dd, yyyy");
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
     private static final String SELECT_SQL = "SELECT count(*) FROM Income WHERE ACTIVE = 1";
 
@@ -67,9 +67,10 @@ public class SetIncome extends AppCompatActivity {
             }catch (ParseException e){e.printStackTrace();}
 
             Intent intent = new Intent(SetIncome.this,MainActivity.class);
-            String frags = "next";
-            intent.putExtra("fragment",frags);
+            String frags = "ViewExpense";
+            intent.putExtra("to",frags);
             startActivity(intent);
+
         }else{
             AddData();
         }

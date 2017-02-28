@@ -48,7 +48,9 @@ public class AddSavings extends AppCompatActivity {
                     if(savingsAmount <= totalIncomeAmount) {
                         mydb.updateSavings(editTextSavingsAmount.getText().toString());
                         mydb.calculateIncome(savingsAmount);
-                        Intent intent = new Intent(AddSavings.this, ViewSavings.class);
+                        Intent intent = new Intent(AddSavings.this, MainActivity.class);
+                        String frags = "ViewSavings";
+                        intent.putExtra("to",frags);
                         startActivity(intent);
                     }else{ Toast.makeText(AddSavings.this, "Income not enough", Toast.LENGTH_SHORT).show(); }
                 } else {

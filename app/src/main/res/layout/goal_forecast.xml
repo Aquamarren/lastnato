@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#efeeee">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,9 +17,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="GOAL RANK"
-        android:id="@+id/textViewGoalRank"
+        android:id="@+id/textViewGoalRank_"
         android:layout_below="@+id/textView5"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="#edecec" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,7 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="FORECASTED DATE OF ACHIEVING GOAL:"
         android:id="@+id/textView6"
-        android:layout_below="@+id/textViewGoalRank"
+        android:layout_below="@+id/textViewGoalRank_"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="39dp" />
 
@@ -80,7 +82,7 @@
         android:text="CHECK"
         android:id="@+id/buttonGoToViewGoal"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textViewGoalRank" />
+        android:layout_alignEnd="@+id/textViewGoalRank_" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -88,8 +90,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Goal Name"
         android:id="@+id/textViewNameGoal"
-        android:layout_below="@+id/textViewGoalRank"
-        android:layout_toStartOf="@+id/textViewGoalRank" />
+        android:layout_below="@+id/textViewGoalRank_"
+        android:layout_toStartOf="@+id/textViewGoalRank_" />
 
     <TextView
         android:layout_width="wrap_content"

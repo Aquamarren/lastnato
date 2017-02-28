@@ -69,11 +69,13 @@ public class ViewExpense extends Fragment {
                /* Intent intent = new Intent(getActivity(), ViewReports.class);
                 startActivity(intent);*/
 
-
                 ViewReports fragment = new ViewReports();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame, fragment,"fragment4");
                 fragmentTransaction.commit();
+
+
+
                 //getActivity().getActionBar().setTitle("Reports");
 
                 /*
@@ -114,9 +116,10 @@ public class ViewExpense extends Fragment {
                         //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
 
                         //Toast.makeText(ViewExpense.this,ID,Toast.LENGTH_LONG).show();
+
                         Intent intent = new Intent(getActivity(), AddExpense.class);
                         intent.putExtra("categoryName",result);
-                        intent.putExtra("categoryID", categoryID);
+                        intent.putExtra("categoryID",categoryID);
                         startActivity(intent);
                     }
                 });

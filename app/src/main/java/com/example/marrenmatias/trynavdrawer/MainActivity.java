@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         TextView un;
     /** The total number of menu items in the {@link NavigationView} */
     private static final int MENU_ITEMS = 7;
-    /** Contains the {@link MenuItem} views in the {@link NavigationView} */
+    //** Contains the {@link MenuItem} views in the {@link NavigationView} */
     private final ArrayList<View> mMenuItems = new ArrayList<>(MENU_ITEMS);
 
     @Override
@@ -76,18 +76,23 @@ public class MainActivity extends AppCompatActivity
         });
 
         Intent i = getIntent();
-        String fragmentName = i.getStringExtra("fragment");
-        String forum = "next";
+        String fragmentName = i.getStringExtra("to");
         Log.d("Test1", "Test1" + fragmentName);
-
-        if (fragmentName != null && fragmentName.equals(forum)) {
+        if (fragmentName != null && fragmentName.equals("ViewExpense")) {
             setTitle("Expenses");
             ViewExpense fragment = new ViewExpense();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment,"fragment3");
             fragmentTransaction.commit();
-
         }
+        else if (fragmentName != null && fragmentName.equals("ViewSavings")) {
+            setTitle("Savings");
+            ViewSavings fragment = new ViewSavings();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment,"fragment5");
+            fragmentTransaction.commit();
+        }
+
        /* setTitle("First Frag");
         AddIncome fragment = new AddIncome();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -176,7 +181,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav6) {
 
             setTitle("Goals");
-            GoalsPage fragment = new GoalsPage();
+            ViewGoalsPage fragment = new ViewGoalsPage();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment,"fragment6");
             fragmentTransaction.commit();
@@ -185,7 +190,7 @@ public class MainActivity extends AppCompatActivity
           else if (id == R.id.nav7) {
 
             setTitle("Community");
-            SeventhFragment fragment = new SeventhFragment();
+            ViewCommunity fragment = new ViewCommunity();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame,fragment,"fragment7");
             fragmentTransaction.commit();

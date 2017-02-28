@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 /**
  * Created by MarrenMatias on 2/15/2017.
  */
-public class ViewGoalDetails extends Activity {
+public class GoalDetails extends Activity {
     DatabaseHelper mydb;
     SQLiteDatabase db;
     private TextView textViewGoalRank_;
@@ -76,7 +78,7 @@ public class ViewGoalDetails extends Activity {
         buttonForecastGoal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(ViewGoalDetails.this, GoalForecast.class);
+                Intent intent2 = new Intent(GoalDetails.this, GoalForecast.class);
                 intent2.putExtra("goalRank", GoalRank);
                 startActivity(intent2);
             }

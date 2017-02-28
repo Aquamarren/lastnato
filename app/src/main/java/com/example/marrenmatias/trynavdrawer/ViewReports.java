@@ -69,7 +69,7 @@ public class ViewReports extends Fragment {
                 "CATEGORY.ID AS _id," +
                 "(EXPENSE.ExpenseAmount/CATEGORY.BudgetCost) * 100 AS ProgressPercent " +
                 "FROM EXPENSE, CATEGORY " +
-                "WHERE ACTIVE = 1 " +
+                "WHERE EXPENSE.ACTIVE = 1 AND CATEGORY.ACTIVE = 1 " +
                 "GROUP BY EXPENSE.ExpenseDate ORDER BY EXPENSE.ExpenseDate DESC",null);  // parameters snipped
         mAdapter = new MessageAdapter(getActivity(), cursor);
         mMessageListView.setAdapter(mAdapter);
@@ -102,7 +102,7 @@ public class ViewReports extends Fragment {
             mColSubject = cursor.getColumnIndex("CategoryName");
             mColFrom = cursor.getColumnIndex("ExpenseAmount");
             mColWhen = cursor.getColumnIndex("ExpenseDate");
-            percentage = cursor.getColumnIndex("ProgressPercent");
+            //percentage = cursor.getColumnIndex("ProgressPercent");
 
             // }
         }
@@ -199,7 +199,7 @@ public class ViewReports extends Fragment {
             //pB.setProgress(cursor.getString(progress));
             pB = (ProgressBar)view.findViewById(R.id.progressBar);
            // pB.setProgress(cursor.getColumnIndex("ProgressPercent"));
-            pB.setProgress(Integer.valueOf(cursor.getString(percentage)));
+           // pB.setProgress(Integer.valueOf(cursor.getString(percentage)));
 
         }
 

@@ -34,6 +34,7 @@ public class AddExpense extends Activity{
         openDatabase();
         mydb = new DatabaseHelper(this);
 
+        //pop up
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 
@@ -56,10 +57,15 @@ public class AddExpense extends Activity{
         btnAddExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String timestamp = new SimpleDateFormat("MMMM dd, yyyy").format(new Date());
-                Bundle bundle = getIntent().getExtras();
-                String categoryName = bundle.getString("categoryName");
-                String categoryID = bundle.getString("categoryID");
+                String timestamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+
+                Intent i = getIntent();
+                String categoryName = i.getStringExtra("categoryName");
+                String categoryID = i.getStringExtra("categoryID");
+
+                //Bundle bundle = getIntent().getExtras();
+                //String categoryName = bundle.getString("categoryName");
+                //String categoryID = bundle.getString("categoryID");
 
                 Cursor cursor = db.rawQuery("SELECT count(*) FROM EXPENSE WHERE ExpenseDate = '" + timestamp + "' " +
                         "AND CategoryName = '"+ categoryName +"' AND ACTIVE = 1",null);
@@ -72,7 +78,9 @@ public class AddExpense extends Activity{
                     mydb.AddExpense(editTextExpenseAmount.getText().toString(), timestamp, categoryName, categoryID);
                     Log.i("Expense Insert", "Expense Inserted");
                 }
-                Intent intent = new Intent(AddExpense.this,ViewExpense.class);
+                Intent intent = new Intent(AddExpense.this,MainActivity.class);
+                String frags = "ViewExpense";
+                intent.putExtra("to",frags);
                 startActivity(intent);
             }
         });
