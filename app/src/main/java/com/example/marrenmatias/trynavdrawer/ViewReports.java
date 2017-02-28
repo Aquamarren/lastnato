@@ -203,7 +203,7 @@ public class ViewReports extends Fragment {
 
         }
 
-
+//
         private boolean isNewGroup(Cursor cursor, int position) {
             // Get date values for current and previous data items
 
