@@ -25,6 +25,7 @@ public class GoalDetails extends Activity {
     private EditText editTextGoalName_;
     private EditText editTextGoalCost_;
     Cursor data;
+    private TextView textViewMoneySaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class GoalDetails extends Activity {
         editTextGoalCost_ = (EditText)findViewById(R.id.editTextGoalCost_);
         buttonUpdateGoal = (Button)findViewById(R.id.buttonUpdateGoal);
         buttonForecastGoal = (Button)findViewById(R.id.buttonForecastGoal);
+        textViewMoneySaved = (TextView)findViewById(R.id.textViewMoneySaved);
 
         viewGoalDetails();
     }
@@ -63,8 +65,10 @@ public class GoalDetails extends Activity {
         String textGoalRank = data.getString(4);
         String textGoalName = data.getString(1);
         String textGoalCost = data.getString(2);
+        String textMoneySaved = data.getString(7);
 
         textViewGoalRank_.setText(textGoalRank);
+        textViewMoneySaved.setText(textMoneySaved);
         editTextGoalName_.setText(textGoalName);
         editTextGoalCost_.setText(textGoalCost);
 

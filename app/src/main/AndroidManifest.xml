@@ -2,12 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.marrenmatias.trynavdrawer">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProviderThrifty241831462943852"
+            android:exported="true" />
+
         <activity
             android:name=".FirstPage"
             android:label="@string/app_name"
@@ -18,8 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SetIncome"/>
+        <activity android:name=".SetIncome" />
         <activity android:name=".AddCategory" />
         <activity android:name=".AddGoal" />
         <activity android:name=".AddSavings" />
@@ -27,7 +43,7 @@
         <activity android:name=".GoalDetails" />
         <activity
             android:name=".GoalForecast"
-            android:theme="@style/AppTheme.PopupOverlay"/>
+            android:theme="@style/AppTheme.PopupOverlay" />
         <activity android:name=".ForecastBudget" />
         <activity android:name=".Main4Activity" />
         <activity android:name=".MainActivity" />
@@ -36,6 +52,8 @@
         <activity android:name=".UseSavings" />
         <activity android:name=".display" />
         <activity android:name=".SignUp" />
+        <activity android:name=".UpdateBudget" />
+        <activity android:name=".ChangePic"></activity>
     </application>
 
 </manifest>

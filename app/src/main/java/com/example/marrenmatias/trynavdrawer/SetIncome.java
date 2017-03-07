@@ -5,6 +5,7 @@ package com.example.marrenmatias.trynavdrawer;
         import android.content.Intent;
         import android.database.Cursor;
         import android.database.sqlite.SQLiteDatabase;
+        import android.graphics.Typeface;
         import android.os.Bundle;
         import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
@@ -12,6 +13,8 @@ package com.example.marrenmatias.trynavdrawer;
         import android.widget.Button;
         import android.widget.DatePicker;
         import android.widget.EditText;
+        import android.widget.ImageButton;
+        import android.widget.TextView;
         import android.widget.Toast;
 
         import java.text.SimpleDateFormat;
@@ -23,7 +26,9 @@ public class SetIncome extends AppCompatActivity {
     DatabaseHelper myDb;
     SQLiteDatabase db;
     EditText txtIncomeAmount;
-    Button btnSetBudget;
+    ImageButton btnSetBudget;
+    TextView tf,si;
+
     private DatePicker datePickerTo;
     private DatePicker datePickerFrom;
     Cursor c;
@@ -38,10 +43,18 @@ public class SetIncome extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         openDatabase();
 
+        tf = (TextView) findViewById(R.id.thrift);
+        si = (TextView) findViewById(R.id.setIncome);
         txtIncomeAmount = (EditText)findViewById(R.id.editTextIncomeAmount);
-        btnSetBudget = (Button)findViewById(R.id.btnSubmit);
+        btnSetBudget = (ImageButton)findViewById(R.id.btnSubmit);
         datePickerTo = (DatePicker) findViewById(R.id.datePickerTo);
         datePickerFrom = (DatePicker)findViewById(R.id.datePickerFrom);
+
+        Typeface sCustomFont = Typeface.createFromAsset(getAssets(),"fonts/King-Basil-Lite.otf");
+        Typeface myCustomFont = Typeface.createFromAsset(getAssets(), "fonts/BebasNeue.otf");
+        tf.setTypeface(sCustomFont);
+        si.setTypeface(myCustomFont);
+        txtIncomeAmount.setTypeface(myCustomFont);
 
         //Checking if there is Active Income
         c = db.rawQuery(SELECT_SQL, null);

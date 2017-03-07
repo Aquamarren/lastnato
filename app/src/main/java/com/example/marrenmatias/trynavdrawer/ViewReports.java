@@ -59,8 +59,6 @@ public class ViewReports extends Fragment {
         });
 
 
-        //data = db.rawQuery("SELECT * FROM CATEGORY WHERE ACTIVE = 1",null);
-
 
         // Set list view adapter
 

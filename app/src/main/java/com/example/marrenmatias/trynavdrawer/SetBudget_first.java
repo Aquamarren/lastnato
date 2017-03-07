@@ -13,7 +13,7 @@ package com.example.marrenmatias.trynavdrawer;
         import android.widget.ListView;
         import android.widget.SimpleCursorAdapter;
         import android.widget.TextView;
-        import android.widget.Toast;
+        import android.widget.AdapterView;
 
 
 public class SetBudget_first extends AppCompatActivity {
@@ -49,6 +49,7 @@ public class SetBudget_first extends AppCompatActivity {
 
         AddCategory();
         ShowFirstCategory();
+        AddBudget();
     }
 
     protected void openDatabase() {
@@ -66,17 +67,30 @@ public class SetBudget_first extends AppCompatActivity {
         int[] to = new int[]{R.id.firstCategoryName, R.id.firstCategoryAmount};
 
         adapter = new SimpleCursorAdapter(SetBudget_first.this,R.layout.firstcategory_row,data,columns,to,0);
+        adapter.swapCursor(data);
+        adapter.notifyDataSetChanged();
         listViewFirstCategory.setAdapter(adapter);
 
-        AddBudget();
+        listViewFirstCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                data.moveToPosition(position);
+                String rowId = data.getString(data.getColumnIndexOrThrow("_id"));
+
+                Intent intent = new Intent(SetBudget_first.this, UpdateBudget.class);
+                intent.putExtra("categoryBudgetID", rowId);
+                startActivity(intent);
+
+                Intent intent1 = new Intent(SetBudget_first.this, SetBudget_first.class);
+                startActivity(intent1);
+            }
+        });
     }
 
     public void AddCategory(){
         btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(SetBudget_first.this, Main4Activity.class);
-                startActivity(intent);*/
                 startActivity(new Intent(SetBudget_first.this,AddCategory.class));
             }
         });
@@ -86,14 +100,7 @@ public class SetBudget_first extends AppCompatActivity {
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //mydb.insertBudgetOnCategory(txtWaterAmount.getText().toString(),
-                //txtElectricityAmount.getText().toString(), txtHouseRentAmount.getText().toString());
-                mydb.insertBudgetOnCategory(String.valueOf(R.id.firstCategoryAmount), String.valueOf(R.id.firstCategoryName));
-                Toast.makeText(SetBudget_first.this, "Budget Inserted", Toast.LENGTH_SHORT).show();
-                Log.i("insert","Data insert expense");
-                Intent intent = new Intent(SetBudget_first.this,MainActivity.class);
-                String frags = "ViewExpense";
-                intent.putExtra("to",frags);
+                Intent intent = new Intent(SetBudget_first.this,ViewExpense.class);
                 startActivity(intent);
             }
         });

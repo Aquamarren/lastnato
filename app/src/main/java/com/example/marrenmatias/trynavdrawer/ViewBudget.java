@@ -1,6 +1,7 @@
 package com.example.marrenmatias.trynavdrawer;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,11 +10,13 @@ import android.view.ViewGroup;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+import android.content.Intent;
 
 
 /**
@@ -22,11 +25,11 @@ import android.widget.Toast;
 public class ViewBudget extends Fragment {
     DatabaseHelper mydb;
     SQLiteDatabase db;
-    private ListView listViewCategoryWithExpense;
     SimpleCursorAdapter adapter;
     Cursor data;
     private Button btnCheckBudget;
     private EditText categoryAmount;
+    private ListView listView4;
 
     public ViewBudget() {
         // Required empty public constructor
@@ -41,45 +44,52 @@ public class ViewBudget extends Fragment {
         mydb = new DatabaseHelper(getActivity());
         openDatabase();
 
-
-        //listViewCategoryWithExpense = (ListView) v.findViewById(R.id.listViewCategoryWithExpense);
+        listView4 = (ListView) v.findViewById(R.id.listView4);
         btnCheckBudget = (Button) v.findViewById(R.id.btnCheckBudget);
-        categoryAmount = (EditText)v.findViewById(R.id.firstCategoryAmount);
         ShowCategoryList();
-        // Inflate the layout for this fragment
+        UpdateBudget();
+
         return v;
     }
+
+
 
 
     protected void openDatabase() {
         db = getActivity().openOrCreateDatabase("THRIFTY.db",android.content.Context.MODE_PRIVATE,null);
     }
 
-
-    public void ShowCategoryList(){
-        data = db.rawQuery("SELECT ID AS _id, * FROM CATEGORY WHERE ACTIVE = 1", null);
-
-        String[] columns = new String[]{DatabaseHelper.KEY_TASK,DatabaseHelper.KEY_TASK2};
+    public void ShowCategoryList() {
+        data = mydb.getListContentsCategory();
+        String[] columns = new String[]{DatabaseHelper.KEY_TASK,"Budget"};
         int[] to = new int[]{R.id.firstCategoryName, R.id.firstCategoryAmount};
 
-        adapter = new SimpleCursorAdapter(getActivity(),R.layout.view_budget,data,columns,to,0);
-        listViewCategoryWithExpense.setAdapter(adapter);
+        adapter = new SimpleCursorAdapter(getActivity(), R.layout.firstcategory_row, data, columns, to, 0);
+        listView4.setAdapter(adapter);
+
+        listView4.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
+                data.moveToPosition(pos);
+                String rowId = data.getString(data.getColumnIndexOrThrow("_id"));
+
+                Intent intent = new Intent(getActivity(), UpdateBudget.class);
+                intent.putExtra("categoryBudgetID", rowId);
+                startActivity(intent);
+            }
+        });
+        Intent intent1 = new Intent(getActivity(), ViewBudget.class);
+        startActivity(intent1);
+    }
+
+    public void UpdateBudget(){
 
         btnCheckBudget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               /* Cursor cursor = db.rawQuery("SELECT IncomeAmount FROM INCOME WHERE ACTIVE = 1",null);
-                cursor.moveToFirst();
-                float incomeAmount = Float.valueOf(cursor.getString(0));
-                if(R.id.CategoryAmount > incomeAmount) {
-                    Toast.makeText(ViewBudget.this, "Income not enough", Toast.LENGTH_SHORT).show();
-                }else{*/
-                mydb.updateBudget(categoryAmount.getText().toString());
-                Toast.makeText(getActivity(), "Budget Updated", Toast.LENGTH_SHORT).show();
-                   /* Intent intent = new Intent(ViewBudget.this, MenuButtons.class);
-                    startActivity(intent);*/
-                //     }
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+
             }
         });
     }

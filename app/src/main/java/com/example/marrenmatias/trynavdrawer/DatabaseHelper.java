@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_UNAME = "uname";
     private static final String COLUMN_PASS = "pass";
     private static final String COLUMN_ACTIVE = "active";
+    private static final String COLUMN_DP = "picture";
 
 
 
@@ -51,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE contact (id integer primary key not null, " +
                 "fname text not null, lname text not null, birthday text not null, email text not null unique, " +
-                "uname text not null unique, pass text not null, active integer not null)");
+                "uname text not null unique, pass text not null, active integer not null, picture text)");
 
         db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " IncomeAmount FLOAT, IncomeDateTo DATE, IncomeDateFrom DATE, ACTIVE INTEGER)");
@@ -200,18 +201,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL);
     }
 
-    public void updateBudget(String Budget){
+    public void updateBudget(String Budget, String ID){
         SQLiteDatabase db = this.getWritableDatabase();
-        String SQL = "UPDATE CATEGORY SET Budget = '" + Budget + "' AND BudgetCost = "+ Budget +" WHERE ACTIVE = 1";
+        String SQL = "UPDATE CATEGORY SET Budget = '" + Budget + "', BudgetCost = "+ Budget +" WHERE ID = " + ID;
         db.execSQL(SQL);
-
-       /* PaSTE Th!S on UpdATE buDG3T PA6eeeeeeeeeeeee
-       Cursor cursor = db.rawQuery("SELECT IncomeAmount FROM INCOME WHERE ACTIVE = 1",null);
-        cursor.moveToFirst();
-        float incomeAmount = Float.valueOf(cursor.getString(0));
-        if(Budget > incomeAmount){
-            Toast.makeText(this,"Income not enough",Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     public void insertGoal(String Goal, String GoalCost, String GoalDate, String GoalRank){
@@ -287,6 +280,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_EMAIL, c.getEmail());
         values.put(COLUMN_UNAME, c.getUname());
         values.put(COLUMN_PASS, c.getPass());
+        values.put(COLUMN_ACTIVE, "1");
+
+        db.insert(TABLE_NAMEZ, null, values);
+    }
+
+    public void insertFB(String id, String fname, String lname, String email, String birthday)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String query = "select * from contact";
+
+        values.put(COLUMN_ID, id);
+        values.put(COLUMN_FNAME, fname);
+        values.put(COLUMN_LNAME, lname);
+        values.put(COLUMN_BDAY, birthday);
+        values.put(COLUMN_EMAIL, email);
+        values.put(COLUMN_UNAME, fname);
+        values.put(COLUMN_PASS, lname);
         values.put(COLUMN_ACTIVE, "1");
 
         db.insert(TABLE_NAMEZ, null, values);

@@ -22,6 +22,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -52,11 +53,15 @@ public class ViewExpense extends Fragment {
 
         CategoryListView();
         ButtonNext();
-
+        onBackPressed();
 
         // Inflate the layout for this fragment
         return v;
     }
+
+   public boolean onBackPressed(){
+       return  false;
+   }
 
     protected void openDatabase() {
         db = getActivity().openOrCreateDatabase("THRIFTY.db",android.content.Context.MODE_PRIVATE,null);
@@ -66,28 +71,12 @@ public class ViewExpense extends Fragment {
         btnGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent(getActivity(), ViewReports.class);
-                startActivity(intent);*/
 
                 ViewReports fragment = new ViewReports();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.frame, fragment,"fragment4");
                 fragmentTransaction.commit();
 
-
-
-                //getActivity().getActionBar().setTitle("Reports");
-
-                /*
-                Intent redirect=new Intent(getActivity(),Cloud.class);
-                    getActivity().startActivity(redirect);
-                 */
-                /*
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-                ViewReports llf = new ViewReports();
-                ft.replace(R.id.frame, llf);
-                ft.commit();*/
             }
         });
     }
@@ -109,13 +98,9 @@ public class ViewExpense extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         data.moveToPosition(position);
-                        //String result =    data.getString(data.getColumnIndex("ID"));
                         String result = data.getString(data.getColumnIndex("CategoryName"));
                         String categoryID = data.getString(data.getColumnIndex("ID"));
 
-                        //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
-
-                        //Toast.makeText(ViewExpense.this,ID,Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(getActivity(), AddExpense.class);
                         intent.putExtra("categoryName",result);

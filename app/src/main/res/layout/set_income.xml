@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/set_income"
     android:layout_width="match_parent"
@@ -11,47 +12,48 @@
     android:background="@drawable/bg2"
     tools:context="com.example.marrenmatias.trynavdrawer.SetIncome">
 
-
-
-    <DatePicker
+    <TextView
+        android:text="Thrifty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datePickerTo"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:layout_alignBottom="@+id/btnSubmit"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp" />
+        android:id="@+id/thrift"
+        android:textSize="36sp"
+        android:textColor="@android:color/white" />
 
-    <Button
+    <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ok"
         android:id="@+id/btnSubmit"
-        android:onClick="onClick"
-        android:layout_marginBottom="21dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/datePickerFrom"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
         android:clickable="true"
-        android:layout_below="@+id/editTextIncomeAmount"
-        android:layout_alignStart="@+id/datePickerTo" />
+        android:onClick="onClick"
+        android:scaleType="centerInside"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/flatcash"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/thrift"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_toStartOf="@+id/setIncome" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Set Income"
-        android:id="@+id/textView"
-        android:layout_marginTop="52dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/setIncome"
+        android:layout_marginEnd="25dp"
+        android:layout_above="@+id/editTextIncomeAmount"
+        android:layout_alignEnd="@+id/editTextIncomeAmount"
+        android:layout_marginBottom="29dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -59,7 +61,28 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editTextIncomeAmount"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignStart="@+id/datePickerFrom"
+        android:layout_alignEnd="@+id/datePickerFrom" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/datePickerFrom"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:clickable="true"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignStart="@+id/datePickerTo" />
+
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/datePickerTo"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_marginBottom="81dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
